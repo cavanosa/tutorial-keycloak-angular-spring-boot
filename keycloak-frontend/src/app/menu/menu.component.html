@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Keycloak</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-home"></i> Inicio</a>
+      </li>
+      <li *ngIf="isLogged" class="nav-item">
+        <a class="nav-link" routerLink="/lista">
+          <i class="far fa-list-alt"></i> Lista</a>
+      </li>
+      <li *ngIf="isAdmin" class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-toolbox"></i> Admin</a>
+      </li>
+      <li *ngIf="isAdmin" class="nav-item">
+        <a class="nav-link" routerLink="/create">
+          <i class="fas fa-plus-circle"></i> Nuevo</a>
+      </li>
+
+
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="isLogged" class="nav-item mr-3">
+        <a class="nav-link" href="#">
+          Bienvenido {{username}}
+        </a>
+      </li>
+      <button *ngIf="!isLogged" class="btn btn-outline-warning mr-3" routerLink="/signup"><i class="fas fa-user-plus"></i>
+        Crear Cuenta</button>
+      <button *ngIf="!isLogged" class="btn btn-outline-success" (click)="login()"><i class="fas fa-sign-in-alt"></i>
+        Iniciar Sesión</button>
+      <button *ngIf="isLogged" class="btn btn-outline-warning" (click)="logout()"><i class="fas fa-sign-out-alt"></i>
+        Cerrar Sesión</button>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+<div class="container mt-4">
+    <div class="row" *ngIf="foo">
+        <div class="col-md-4 mx-auto">
+            <form (ngSubmit)="onUpdate()" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="fooName">Nombre:</label>
+                    <input type="text" class="form-control" name="fooName" id="fooName"
+                    [(ngModel)]="foo.name" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-outline-success btn-block" [disabled]="!f.valid">
+                    <i class="far fa-edit"></i> Actualizar</button>
+                    <button type="button" class="btn btn-outline-primary btn-block" (click)="volver()">
+                        <i class="far fa-arrow-alt-circle-left"></i> Volver</button>
+            </form>
+        </div>
+    </div>
+</div>
