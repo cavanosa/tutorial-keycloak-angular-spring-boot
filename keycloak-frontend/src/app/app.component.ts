@@ -30,6 +30,7 @@ export class AppComponent {
     responseType: 'code',
     scope: 'openid profile email offline_access',
     showDebugInformation: true,
+    useIdTokenHintForSilentRefresh: true
   };
 
   configure(): void {
@@ -38,11 +39,13 @@ export class AppComponent {
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => this.oauthService.tryLogin())
       .then(() => {
-        if (this.oauthService.getIdentityClaims()) {
+        if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidIdToken()) {
           this.isLogged = this.loginService.getIsLogged();
           this.isAdmin = this.loginService.getIsAdmin();
           this.username = this.loginService.getUsername();
-          this.messageService.sendMessage(this.loginService.getUsername());
+          this.messageService.sendMessage(this.username);
+        } else {
+          this.messageService.sendMessage('');
         }
       });
   }

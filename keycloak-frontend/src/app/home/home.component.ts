@@ -9,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   username: string;
+  isLogging = true;
 
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.messageService.getMessage().subscribe( res => {
+      console.log('receiving message');
       this.username = res[`text`];
+      this.isLogging = false;
     },
     err => console.log(err));
   }
