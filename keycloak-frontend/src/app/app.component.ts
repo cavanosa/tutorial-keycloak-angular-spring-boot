@@ -39,7 +39,7 @@ export class AppComponent {
     this.oauthService.setupAutomaticSilentRefresh();
     this.oauthService.loadDiscoveryDocument().then(() => this.oauthService.tryLogin())
       .then(() => {
-        if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidIdToken()) {
+        if (this.oauthService.hasValidAccessToken() && this.oauthService.hasValidIdToken()) {
           this.isLogged = this.loginService.getIsLogged();
           this.isAdmin = this.loginService.getIsAdmin();
           this.username = this.loginService.getUsername();
